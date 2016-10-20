@@ -17,9 +17,9 @@ testNL <- TRUE
 openVocabularium(werkBoekNaam=werkBoekNaam)
 
 # Er zijn nog meer opties maar de voornaamse zijn hier opgegeven, de anderen krijgen een standaardwaarde.
-maakToets(aantalWoordjes=8, 
+maakToets(aantalWoordjes=38, 
           werkBoekNaam=werkBoekNaam,
-          moduleOmVanTeSelecteren = "2.3")
+          moduleOmVanTeSelecteren = "1.2")
 
 # je kan ook module weglaten
 maakToets(aantalWoordjes=4, 

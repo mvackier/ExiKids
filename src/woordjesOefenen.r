@@ -115,6 +115,7 @@ controleerToets <- function(werkBoekNaam,
   taalCode <- toupper(substr(werkBoekNaam,1,2))
   # de taalcode die veronderstel wordt te verbeteren
   controleerTaalCode <- ifelse(controleerNL, "NL", taalCode)
+  vanTaalCode <- ifelse(controleerNL, taalCode,"NL")
   
   # Add Voc...
   werkBoekUrl <- getWerkBoekUrl(werkBoekNaam)
@@ -145,20 +146,30 @@ controleerToets <- function(werkBoekNaam,
   })
   
   resultaat <- sapply(vergelijkVelden, function(veld) {
-    tolower(vergelijkTabel[[veld]])==tolower(vergelijkTabel[[paste0(veld,".jij")]])
+    lv <- tolower(vergelijkTabel[[veld]])
+    rv <- tolower(vergelijkTabel[[paste0(veld,".jij")]])
+    # Split by ;
+    mapply(strsplit(lv, split = ";", fixed = T), 
+           strsplit(rv, split = ";", fixed = T),
+           FUN=function(lvl, rvl) {
+              # note : doro max te nemen zorden er punten afgetrokken als je veel woorden gokt
+              length(intersect(lvl, rvl))/max(length(lvl), length(rvl))
+           })
   })
 
-  isResultaatOK <- apply(resultaat, MARGIN = 1, sum, na.rm=T)==length(vergelijkVelden)
-  vergelijkTabel[,resultaat:=ifelse(isResultaatOK, "Juist","Fout")]
+  resultaatInPunten <- apply(resultaat, MARGIN = 1, sum, na.rm=T)
+  vergelijkTabel[,resultaat:=resultaatInPunten]
   
   
   attach(vergelijkTabel)
-  puntenInPercent <- sum(isResultaatOK)*100/nrow(vergelijkTabel)
-  finaalResultaat <- paste0(sum(isResultaatOK), "/", nrow(vergelijkTabel), " ofwel ",sprintf("%.2f",puntenInPercent)," %")
+  puntenInPercent <- sum(resultaatInPunten)*100/nrow(vergelijkTabel)
+  finaalResultaat <- paste0(sum(resultaatInPunten), "/", nrow(vergelijkTabel), " ofwel ",sprintf("%.2f",puntenInPercent)," %")
   detach(vergelijkTabel)
 
   vergelijkTabel <- rbindlist(list(vergelijkTabel, data.table(resultaat=finaalResultaat)), fill = T, use.names = TRUE)
-  setcolorder(vergelijkTabel, c("module","resultaat",taalCode,"NL.jij","NL","genus.jij","genus","type.jij","type","stam_ww.jij","stam_ww","stam_zn_2de_klasse.jij","stam_zn_2de_klasse"))
+  
+  andereVelden <- as.vector(sapply(c(controleerTaalCode, vrijeVelden), function(x) c(x, paste0(x,".jij"))))
+  setcolorder(vergelijkTabel, c("module","resultaat",vanTaalCode, andereVelden))
   
   
   print(vergelijkTabel)
