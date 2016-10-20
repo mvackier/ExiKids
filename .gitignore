@@ -9,7 +9,7 @@
 
 # Session Data files
 .RData
-.rdata
+*.rdata
 
 # Example code in package build process
 *-Ex.R
