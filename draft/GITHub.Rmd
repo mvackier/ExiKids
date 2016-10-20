@@ -1,0 +1,34 @@
+https://github.com/mvackier/ExiKids
+
+
+Use .gitignore
+
+https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf
+http://rogerdudler.github.io/git-guide/
+
+
+
+https://www.atlassian.com/git/tutorials/saving-changes/git-add
+
+Think about the 3 stages !!
+
+Use :
+- git add filePattern
+		for adding new files or updated files for next commit
+	git reset [filePattern]
+			if made mistakes
+	git add -u 
+		so that it will stage the modified and deleted files.
+- git commit [-m "Added gitignore for file2"]
+	commit those added to ...
+	git status
+		to see what is staged for commit
+- git push
+	all commits are local so this pushes it to the hub
+- git pull
+	update with latests
+
+
+Clone ExiKids
+	got do ~/Documents
+	git clone https://github.com/mvackier/ExiKids.git

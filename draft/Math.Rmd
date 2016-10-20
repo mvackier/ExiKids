@@ -1,0 +1,26 @@
+```{r include=FALSE, echo=FALSE}
+```
+
+# ExiKids
+Dit is niet zomaar een inleiding in programmeren voor middelbare schoolstudenten.
+
+Changed from local.
+
+$$ x = 5 y$$
+
+$$a \pm b$$
+
+$$x \ge 15$$
+
+$$ x \in \mathbb{N}$$
+
+$$ y \not \in \mathbb{Z}$$
+
+$$\sqrt{b^2 - 4ac}$$
+
+$$\frac{4z^3}{16}$$
+
+$$4z^3/16$$
+
+$$\alpha, \beta,  \gamma, \Gamma$$
+

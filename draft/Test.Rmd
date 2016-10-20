@@ -1,0 +1,42 @@
+```{r include=FALSE, echo=FALSE}
+library(data.table)
+library(googlesheets)
+library(DT)
+library(rhandsontable)
+
+# TODO : deel sommige sheets op Livias google
+latReg <- gs_title("Latijn Vocabularium")
+
+# opens in browser for editing
+gs_browse(latReg)
+
+woordDT <- as.data.table(gs_read(latReg, ws = "Woordjes"))
+```
+
+# ExiKids
+Dit is niet zomaar een inleiding in programmeren voor middelbare schoolstudenten.
+
+Changed from local.
+
+```{r}
+  latReg
+ 
+```
+
+De woordje die er zijn
+
+
+```{r}
+  woordDT
+```
+
+```{r}
+datatable(woordDT, options = list(pageLength = 5))
+```
+
+```{r}
+  rhandsontable(woordDT)
+```
+
+$ x = 5 y$
+
