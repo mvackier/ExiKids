@@ -1,8 +1,15 @@
+#
+# Bij eerste maal opstarten moet je inloggen met google account (en papa moet er toegang tot gegeven hebben aan uw account)
+# Dan inbrengen van code in R en klaar is kees. 
+# Volgende keer vraagt hij dat niet meer
+#
+
+
 #suppressMessages(library(dplyr))
 library(data.table)
 library(googlesheets)
 
-setwd("~/ExiKids/src")
+setwd("~/Documents/ExiKids/src")
 # Broncode inladen
 source("woordjesOefenen.r")
 
